@@ -67,9 +67,9 @@ public class IncidentDAO {
 
                 do {
                     Incident incident = new Incident();
-                    incident.setId(cursor.getLong(0));
-                    incident.setAttendantName(cursor.getString(1));
-                    incident.setClientName(cursor.getString(2));
+                    incident.setId(cursor.getLong(cursor.getColumnIndex("_id")));
+                    incident.setAttendantName(cursor.getString(cursor.getColumnIndex("atendente")));
+                    incident.setClientName(cursor.getString(cursor.getColumnIndex("cliente")));
                     incident.setDescription(cursor.getString(3));
                     incident.setStatus(cursor.getString(4));
                     incident.setCreationTime(cursor.getString(5));

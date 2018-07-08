@@ -33,6 +33,24 @@ public class DBCore extends SQLiteOpenHelper {
                 + "descricao text(512) default null,"
                 + "status text(16) default null,"
                 + "creation_time datetime default current_timestamp);");
+
+        db.execSQL("insert into atendentes (_id, nome) values("
+                +"4, 'Anderson')");
+        db.execSQL("insert into atendentes (_id, nome) values("
+                +"5, 'Andre')");
+        db.execSQL("insert into atendentes (_id, nome) values("
+                +"6, 'Otavio')");
+
+        db.execSQL("insert into clientes (_id, nome, empresa) values("
+                +"1, 'Jefferson', 'Pixel Inc')");
+        db.execSQL("insert into clientes (_id, nome, empresa) values("
+                +"2, 'Maximo', 'York Research')");
+        db.execSQL("insert into clientes (_id, nome, empresa) values("
+                +"3, 'Gabriella', 'Faraday Co')");
+
+        db.execSQL("insert into incidentes (_id, atendente, cliente, descricao, status, creation_time) values("
+                +"1, 4, 2, 'Desc do problema', 'aberto', '2018-06-19 01:12:48')");
+
     }
 
     @Override
