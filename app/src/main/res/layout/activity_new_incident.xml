@@ -26,21 +26,7 @@
             android:layout_height="match_parent"
             android:background="@drawable/background_description">
 
-            <TextView
-                android:id="@+id/new_id_incident"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="8dp"
-                android:text="Id incident"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
+            <EditText
                 android:id="@+id/new_attendant_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -48,13 +34,13 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="4dp"
-                android:text="Attendant name"
+                android:layout_marginTop="8dp"
+                android:hint="Digite o nome do atendente"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/new_id_incident" />
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <EditText
                 android:id="@+id/new_client_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -63,7 +49,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="4dp"
-                android:text="Client name"
+                android:hint="Digite o nome do Cliente"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/new_attendant_name" />
@@ -85,23 +71,23 @@
             <EditText
                 android:id="@+id/new_description"
                 android:layout_width="match_parent"
-                android:layout_height="110dp"
-                android:inputType="textMultiLine"
-                android:scrollbars="vertical"
-                android:gravity="start"
-                android:padding="5dp"
-                android:maxLength="512"
+                android:layout_height="198dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="4dp"
                 android:background="@drawable/background_description"
+                android:gravity="start"
+                android:inputType="textMultiLine"
+                android:maxLength="512"
+                android:padding="5dp"
+                android:scrollbars="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txt_descricao" />
 
-            <TextView
+            <EditText
                 android:id="@+id/new_status"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -109,25 +95,26 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="4dp"
-                android:text="Status"
+                android:layout_marginTop="12dp"
+                android:hint="Digite o status do incidente"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/new_description" />
 
-            <TextView
-                android:id="@+id/new_creation_time"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="4dp"
-                android:text="Creation time"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/new_status" />
+            <!--<TextView-->
+            <!--android:id="@+id/new_creation_time"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginEnd="20dp"-->
+            <!--android:layout_marginLeft="20dp"-->
+            <!--android:layout_marginRight="20dp"-->
+            <!--android:layout_marginStart="20dp"-->
+            <!--android:layout_marginTop="4dp"-->
+            <!--android:text="Creation time"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/new_status" />-->
 
             <Button
                 android:id="@+id/btn_new_incident"
@@ -140,8 +127,9 @@
                 android:layout_marginTop="12dp"
                 android:text="Adicionar novo Incidente"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/new_creation_time" />
+                app:layout_constraintTop_toBottomOf="@+id/new_status" />
 
         </android.support.constraint.ConstraintLayout>
 

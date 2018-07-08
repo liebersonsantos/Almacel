@@ -52,7 +52,7 @@ public class ClientDAO {
         }
     }
 
-    public List<Client> searchClient(){
+    public List<Client> getClient(){
 
         List<Client> clientList = new ArrayList<Client>();
         String[] columns = {"_id", "nome", "empresa"};
@@ -64,9 +64,9 @@ public class ClientDAO {
 
                 do {
                     Client client = new Client();
-                    client.setId(cursor.getLong(0));
-                    client.setName(cursor.getString(1));
-                    client.setCompanyName(cursor.getString(2));
+                    client.setId(cursor.getLong(cursor.getColumnIndex("_id")));
+                    client.setName(cursor.getString(cursor.getColumnIndex("nome")));
+                    client.setCompanyName(cursor.getString(cursor.getColumnIndex("empresa")));
 
                     clientList.add(client);
 

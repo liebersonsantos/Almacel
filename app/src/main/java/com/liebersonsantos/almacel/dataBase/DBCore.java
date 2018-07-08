@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class DBCore extends SQLiteOpenHelper {
 
@@ -18,16 +19,16 @@ public class DBCore extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         db.execSQL("create table if not exists atendentes("
-                + "_id integer(11) not null primary key autoincrement,"
+                + "_id integer not null primary key autoincrement,"
                 + "nome text(64) not null);");
 
         db.execSQL("create table if not exists clientes("
-                + "_id integer(11) not null primary key autoincrement,"
+                + "_id integer not null primary key autoincrement,"
                 + "nome text(64) not null,"
                 + "empresa text(64) not null);");
 
         db.execSQL("create table if not exists incidentes("
-                + "_id integer(11) not null primary key autoincrement,"
+                + "_id integer not null primary key autoincrement,"
                 + "atendente integer(11) not null,"
                 + "cliente integer(11) not null,"
                 + "descricao text(512) default null,"

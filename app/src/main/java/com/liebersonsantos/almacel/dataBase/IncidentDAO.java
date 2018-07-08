@@ -8,7 +8,9 @@ import android.util.Log;
 
 import com.liebersonsantos.almacel.model.Incident;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class IncidentDAO {
@@ -55,7 +57,7 @@ public class IncidentDAO {
         }
     }
 
-    public List<Incident> searchIncident(){
+    public List<Incident> getIncident(){
 
         List<Incident> incidentList = new ArrayList<>();
         String[] columns = {"_id", "atendente", "cliente", "descricao", "status", "creation_time"};
@@ -70,9 +72,9 @@ public class IncidentDAO {
                     incident.setId(cursor.getLong(cursor.getColumnIndex("_id")));
                     incident.setAttendantName(cursor.getString(cursor.getColumnIndex("atendente")));
                     incident.setClientName(cursor.getString(cursor.getColumnIndex("cliente")));
-                    incident.setDescription(cursor.getString(3));
-                    incident.setStatus(cursor.getString(4));
-                    incident.setCreationTime(cursor.getString(5));
+                    incident.setDescription(cursor.getString(cursor.getColumnIndex("descricao")));
+                    incident.setStatus(cursor.getString(cursor.getColumnIndex("status")));
+                    incident.setCreationTime(cursor.getString(cursor.getColumnIndex("creation_time")));
 
                     incidentList.add(incident);
 

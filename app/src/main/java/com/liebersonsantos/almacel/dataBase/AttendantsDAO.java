@@ -50,7 +50,7 @@ public class AttendantsDAO {
 
     }
 
-    public List<Attendants> searchAttendants(){
+    public List<Attendants> getAttendants(){
 
         List<Attendants> attendantsList = new ArrayList<>();
         String[] columns = {"_id", "nome"};
@@ -62,8 +62,8 @@ public class AttendantsDAO {
 
                 do {
                     Attendants attendants = new Attendants();
-                    attendants.setId(cursor.getLong(0));
-                    attendants.setAttendantName(cursor.getString(1));
+                    attendants.setId(cursor.getLong(cursor.getColumnIndex("_id")));
+                    attendants.setAttendantName(cursor.getString(cursor.getColumnIndex("nome")));
 
                     attendantsList.add(attendants);
 
