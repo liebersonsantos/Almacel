@@ -31,6 +31,7 @@ public class ClientDAO {
             values.put("empresa", client.getCompanyName());
 
             database.insert("clientes",null, values);
+
         }catch (Exception e){
             Log.i(TAG, "insertClient: " + e.getMessage());
         }
@@ -45,6 +46,7 @@ public class ClientDAO {
             values.put("empresa", client.getCompanyName());
 
             database.update("clientes", values, "_id = ?", new String[]{"" + client.getId()});
+
         }catch (Exception e){
             Log.i(TAG, "updateClient: " + e.getMessage());
         }
@@ -56,9 +58,38 @@ public class ClientDAO {
         String[] columns = {"_id", "nome", "empresa"};
         Cursor cursor = database.query("clientes", columns, null, null, null, null,"_id");
 
-        return ();
+        try {
+            if (cursor.getCount() > 0){
+                cursor.moveToFirst();
+
+                do {
+                    Client client = new Client();
+                    client.setId(cursor.getLong(0));
+                    client.setName(cursor.getString(1));
+                    client.setCompanyName(cursor.getString(2));
+
+                    clientList.add(client);
+
+                }while (cursor.moveToNext());
+            }
+            return (clientList);
+
+        }catch (Exception e){
+            Log.i(TAG, "searchClient: " + e.getMessage());
+            return (clientList);
+        }finally {
+            cursor.close();
+        }
+
     }
 
+    public void deleteClient(Client client){
+        try {
+            database.delete("clientes", "_id = ?", new String[]{"" + client.getId()});
+        }catch (Exception e){
+            Log.i(TAG, "deleteClient: " + e.getMessage());
+        }
 
+    }
 
 }

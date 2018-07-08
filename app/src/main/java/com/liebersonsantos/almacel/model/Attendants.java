@@ -2,22 +2,22 @@ package com.liebersonsantos.almacel.model;
 
 public class Attendants {
 
-    private int id;
+    private long id;
     private String attendantName;
 
     public Attendants() {
     }
 
-    public Attendants(int id, String attendantName) {
+    public Attendants(long id, String attendantName) {
         this.id = id;
         this.attendantName = attendantName;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
