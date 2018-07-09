@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.liebersonsantos.almacel.R;
 import com.liebersonsantos.almacel.model.Incident;
+import com.liebersonsantos.almacel.model.IpResponse;
 
 import java.util.List;
 
@@ -23,6 +24,11 @@ import butterknife.ButterKnife;
 public class AdapterIncidents extends RecyclerView.Adapter<AdapterIncidents.IncidentsViewHolder>{
 
     private List<Incident> incidentList;
+    private IpResponse ipResponse;
+
+    public AdapterIncidents() {
+        ipResponse = new IpResponse();
+    }
 
     public AdapterIncidents(List<Incident> incidentList) {
         this.incidentList = incidentList;
@@ -40,16 +46,7 @@ public class AdapterIncidents extends RecyclerView.Adapter<AdapterIncidents.Inci
     @Override
     public void onBindViewHolder(@NonNull IncidentsViewHolder holder, int position) {
 
-        Incident incident = incidentList.get(position);
-
-        if(incident != null){
-            holder.txtIdIncident.setText(String.valueOf(incident.getId()));
-            holder.txtAttendantName.setText(incident.getAttendantName());
-            holder.txtClientName.setText(incident.getClientName());
-            holder.txtDescricao.setText(incident.getDescription());
-            holder.txtStatus.setText(incident.getStatus());
-            holder.txtCreationTime.setText(incident.getCreationTime());
-        }
+        holder.bind(incidentList.get(position));
     }
 
     @Override
@@ -78,15 +75,26 @@ public class AdapterIncidents extends RecyclerView.Adapter<AdapterIncidents.Inci
             super(itemView);
 
             ButterKnife.bind(this, itemView);
+
         }
 
-//        public void bind(Incident incident){
-//
-//            txtIdIncident.setText(incident.toString());
-//            ImageUtil.loadImage(Constantes.URL_BASE_CATEGORY_COVERS + categories.getMagazineCatCover(), imgItemCategory, progressBarCategory, R.drawable.logo);
-//
-//
-//        }
+        public void bind(Incident incident){
+
+            if(incident != null){
+                txtIdIncident.setText(String.valueOf(incident.getId()));
+                txtAttendantName.setText(incident.getAttendantName());
+                txtClientName.setText(incident.getClientName());
+                txtDescricao.setText("Ip Atendente: " + ipResponse.getIp() +" "+ incident.getDescription());
+                txtStatus.setText(incident.getStatus());
+                txtCreationTime.setText(incident.getCreationTime());
+            }
+        }
+
+    }
+
+    public void setIpResponseL(IpResponse ipResponse){
+        this.ipResponse = ipResponse;
+        notifyDataSetChanged();
 
     }
 }

@@ -37,9 +37,6 @@ public class NewIncidentActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-
-
-
     }
 
     @OnClick(R.id.btn_new_incident)

@@ -3,27 +3,31 @@ package com.liebersonsantos.almacel.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.liebersonsantos.almacel.R;
 import com.liebersonsantos.almacel.adapter.AdapterIncidents;
 import com.liebersonsantos.almacel.dataBase.IncidentDAO;
+import com.liebersonsantos.almacel.helper.Constants;
 import com.liebersonsantos.almacel.model.Incident;
+import com.liebersonsantos.almacel.model.IpResponse;
+import com.liebersonsantos.almacel.netWork.RestClient;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,7 +37,9 @@ public class MainActivity extends AppCompatActivity {
     private AdapterIncidents adapterIncidents;
     private List<Incident> incidentList;
     private IncidentDAO incidentDAO;
-    private ConstraintLayout constraintLayout;
+    private IpResponse ipResponse;
+    private static final String TAG = "MAINTEST";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +49,37 @@ public class MainActivity extends AppCompatActivity {
 //        setSupportActionBar(toolbar);
         ButterKnife.bind(this);
 
+
+
+        callingAPIconnection();
+
+    }
+
+    private void callingAPIconnection() {
+        RestClient.getInstance().getiP(Constants.URL_FORMAT).enqueue(new Callback<IpResponse>() {
+            @Override
+            public void onResponse(Call<IpResponse> call, Response<IpResponse> response) {
+
+                if (response.isSuccessful() && response.body() != null){
+
+                    Log.i(TAG, "onResponse: " + response.body().getIp());
+
+                    adapterIncidents.setIpResponseL(response.body().getIp());
+
+                    settingsAdapter();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<IpResponse> call, Throwable t) {
+
+                Toast.makeText(MainActivity.this, "Verificar conexão com o retrofit", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void settingsAdapter() {
         incidentDAO = new IncidentDAO(this);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
