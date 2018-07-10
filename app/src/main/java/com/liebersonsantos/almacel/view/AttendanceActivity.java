@@ -15,7 +15,7 @@ import butterknife.OnClick;
 
 public class AttendanceActivity extends AppCompatActivity {
 
-    @BindView(R.id.edtNameAt)
+    @BindView(R.id.edtName)
     EditText edtName;
 
     @Override
