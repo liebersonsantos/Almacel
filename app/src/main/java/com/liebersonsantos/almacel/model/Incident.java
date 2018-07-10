@@ -1,10 +1,13 @@
 package com.liebersonsantos.almacel.model;
 
-public class Incident {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Incident implements Parcelable {
 
     private long id;
-    private String attendantName;
-    private String clientName;
+    private long attendant;
+    private long client;
     private String description;
     private String status;
     private String creationTime;
@@ -12,14 +15,35 @@ public class Incident {
     public Incident() {
     }
 
-    public Incident(long id, String attendantName, String clientName, String description, String status, String creationTime) {
+    public Incident(long id, long attendant, long client, String description, String status, String creationTime) {
         this.id = id;
-        this.attendantName = attendantName;
-        this.clientName = clientName;
+        this.attendant = attendant;
+        this.client = client;
         this.description = description;
         this.status = status;
         this.creationTime = creationTime;
     }
+
+    protected Incident(Parcel in) {
+        id = in.readLong();
+        attendant = in.readLong();
+        client = in.readLong();
+        description = in.readString();
+        status = in.readString();
+        creationTime = in.readString();
+    }
+
+    public static final Creator<Incident> CREATOR = new Creator<Incident>() {
+        @Override
+        public Incident createFromParcel(Parcel in) {
+            return new Incident(in);
+        }
+
+        @Override
+        public Incident[] newArray(int size) {
+            return new Incident[size];
+        }
+    };
 
     public long getId() {
         return id;
@@ -29,20 +53,20 @@ public class Incident {
         this.id = id;
     }
 
-    public String getAttendantName() {
-        return attendantName;
+    public long getAttendant() {
+        return attendant;
     }
 
-    public void setAttendantName(String attendantName) {
-        this.attendantName = attendantName;
+    public void setAttendant(long attendant) {
+        this.attendant = attendant;
     }
 
-    public String getClientName() {
-        return clientName;
+    public long getClient() {
+        return client;
     }
 
-    public void setClientName(String clientName) {
-        this.clientName = clientName;
+    public void setClient(long client) {
+        this.client = client;
     }
 
     public String getDescription() {
@@ -67,5 +91,20 @@ public class Incident {
 
     public void setCreationTime(String creationTime) {
         this.creationTime = creationTime;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(id);
+        dest.writeLong(attendant);
+        dest.writeLong(client);
+        dest.writeString(description);
+        dest.writeString(status);
+        dest.writeString(creationTime);
     }
 }

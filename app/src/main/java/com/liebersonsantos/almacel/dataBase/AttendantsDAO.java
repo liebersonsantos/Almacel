@@ -80,6 +80,37 @@ public class AttendantsDAO {
 
     }
 
+    public Attendants getAttendantById(long id) {
+
+        Attendants attendant = new Attendants();
+        String[] columns = {"_id", "nome"};
+        String where = "_id = ?";
+        Cursor cursor = database.query("atendentes", columns, where, new String[]{"" + id}, null, null, null);
+
+        try {
+            if (cursor.getCount() > 0) {
+                cursor.moveToFirst();
+
+                do {
+
+                    attendant.setId(cursor.getLong(cursor.getColumnIndex("_id")));
+                    attendant.setAttendantName(cursor.getString(cursor.getColumnIndex("nome")));
+
+                    return attendant;
+
+                } while (cursor.moveToNext());
+            } else {
+                return attendant;
+            }
+
+        } catch (Exception e) {
+            Log.i(TAG, "searchAttendants: " + e.getMessage());
+            return (attendant);
+        } finally {
+            cursor.close();
+        }
+    }
+
     public void deleteAttendants(Attendants attendants){
         try {
             database.delete("atendentes", "_id = ?", new String[]{"" + attendants.getId()});

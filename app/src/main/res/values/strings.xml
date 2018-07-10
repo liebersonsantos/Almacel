@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Almacel</string>
     <string name="action_settings">Settings</string>
+    <string name="cadastrar_atendente">Cadastrar atendente</string>
+    <string name="cadastrar_cliente">Cadastrar cliente</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="text_fotmat"><b>%s</b> %s</string>
 </resources>
